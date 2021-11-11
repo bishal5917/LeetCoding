@@ -1,0 +1,20 @@
+Metacharacters has special meaning in Python, and they are used with “re” modules to search for keywords and objects more technically and efficiently. We will see the working of a few Meta Characters in this tutorial so you can get an idea. I will provide you with a list of these characters and their working at the end of this tutorial. 
+
+Use of “^”:-
+We use the”^” symbol to check whether the string is starting from the keyword we wrote after ^ or not. For example, if a string starts from CodeWithHarry and we are searching the keyword using ^CodeWithHarry with finditer then it will return us that whether our string is staring from the searched keyword or not. The same is the case for $ sign. It will check whether our string is ending with the specific keyword or not.
+
+Use of “|”:-
+We can also use a unique character “|” to use more than one condition, so if we use it for the above case, then it will check whether the string starts or ends with CodeWithHarry.Now we will move on to special sequences. We will see a few special sequences in this tutorial, and you can have a look at the list of these sequences at the end of the tutorial description for further practice. 
+
+\A:         the resultant is a match if the input characters are at the beginning of the string                
+\b          the resultant is a match whether the input characters are at the beginning or the end of a word                               
+\d          the resultant is a match if the string contains any digits  
+\s           the resultant is a match if the string contains a white space character
+There are many metacharacters supported by the re module. Some characters with their working are the following:
+
+'.': Matches any single character except newline
+'$': Anchors a match at the end of a string
+' *': Matches zero or more repetitions
+'+':Matches one or more repetitions
+'{}':Matches an explicitly specified number of repetitions
+'[]':Specifies a character class
