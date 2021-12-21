@@ -1,8 +1,8 @@
+
 class node:
     def __init__(self, value=None, next=None):
         self.value = value
         self.next = next
-
 
 class linkedList:
     def __init__(self, head=None):
@@ -21,21 +21,35 @@ class linkedList:
     def traverse(self):
         curr = self.head
         while curr is not None:
-            print(curr.value)
+            print(curr.value,end=" ")
             curr = curr.next
-            
-    def deleteNthNodeFromEnd(self,n):
-        firstPtr=self.head
-        for i in range(1,n):
-            front=front.next
-        secondPtr=front
+
+    def deleteNthNodeFromEnd(self, n):
+        firstPtr = self.head
+        secondPtr = self.head
+        # count = 1
+        # while count <= n:
+        #     secondPtr = secondPtr.next
+        #     count += 1
+        for i in range(0, n):
+            secondPtr = secondPtr.next
+        if secondPtr is None:
+            self.head.value = self.head.next.value
+            self.head.next = self.head.next.next
+            return
         while secondPtr.next is not None:
-            firstPtr=firstPtr.next
-            secondPtr=secondPtr.next
-        
-        
-            
+            firstPtr = firstPtr.next
+            secondPtr = secondPtr.next
+        firstPtr.next = firstPtr.next.next
+
+
 obj = linkedList()
 for i in range(4, 14):
     obj.insert(i)
+print("Before Deletion")
 obj.traverse()
+print("\n")
+obj.deleteNthNodeFromEnd(4)
+print("After Deletion")
+obj.traverse()
+
