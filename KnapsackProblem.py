@@ -16,9 +16,29 @@ def KnapSack(items, capacity):
                 knapSackValues[i][c] = max(knapSackValues[i-1][c],
                                            knapSackValues[i-1][c-currentWeight]+currentValue)
 
-    print(knapSackValues[-1][-1])
+    return knapSackValues
+
+
+def getItem(KnapSackValues, items):
+    sequence = []
+    i = len(KnapSackValues)-1
+    c = len(KnapSackValues[0])-1
+    # we pointing i c at last one of KnapSackValues[-1][-1]
+    # Then we will backtrack from there
+    while i > 0:
+        if KnapSackValues[i][c] == KnapSackValues[i-1][c]:
+            i -= 1
+        else:
+            sequence.append(i-1)
+            c -= items[i-1][1]
+            i -= 1
+            if c == 0:
+                break
+    return sequence
 
 
 if __name__ == "__main__":
     itemArray = [[1, 2], [4, 3], [5, 6], [6, 7]]
-    KnapSack(itemArray, 10)
+    final2dArray = KnapSack(itemArray, 10)
+    finalReturned = getItem(final2dArray, itemArray)
+    print(finalReturned)
