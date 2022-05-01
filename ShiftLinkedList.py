@@ -61,5 +61,5 @@ for i in range(0, 6):
     l.insert(i)
 l.printing()
 print("\n")
-l.ShiftLinkedList(-2)
+l.ShiftLinkedList(2)
 l.printing()
