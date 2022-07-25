@@ -1,4 +1,4 @@
-def PageRankAlgo():
+def PageRankAlgo(its):
     # Representing that graph with python dictionary
     d_out = {
         'A': ["B", "C"],
@@ -27,7 +27,7 @@ def PageRankAlgo():
 
     d = 0.85
     it_count = 0
-    while it_count != 1:
+    while it_count != its:
         pr_in_a = d_in["A"]
         pra = 0.15
         for item in pr_in_a:
@@ -47,10 +47,10 @@ def PageRankAlgo():
         pr['C'] = prc
 
         it_count += 1
-        
-        return pr
+
+    return pr
 
 
-
-
-         
+if __name__ == "__main__":
+    iterations = 2
+    print(PageRankAlgo(iterations))
