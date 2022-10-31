@@ -21,10 +21,10 @@
 # for i in range(0,0):
 #     print(arr[i])
 
-hash={}
-arr=[2,3,4,5]
-hash[5]=[[arr[0],arr[1]]]
-print(hash)
-hash[5].append([2,3])
-print(hash)
+# hash={}
+# arr=[2,3,4,5]
+# hash[5]=[[arr[0],arr[1]]]
+# print(hash)
+# hash[5].append([2,3])
+# print(hash)
 

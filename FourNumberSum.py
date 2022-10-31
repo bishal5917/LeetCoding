@@ -1,7 +1,6 @@
+#Optimal Approach
 #Time complexity = O(n^2)
 #Space complexity = O(n^2)
-#Using the naive 4 for loops approach we could have solved this using O(n^4) complexity
-
 def FourNumberSum(arr,target):
     hash={}
     quadruplets=[]
@@ -19,21 +18,25 @@ def FourNumberSum(arr,target):
                 hash[toadd]=[[arr[k],arr[i]]]
             else:
                 hash[toadd].append([arr[k],arr[i]])
-    # print(hash)
+
     return quadruplets
 
-def FourNumberSum(arr,target):
-    quadruplets=[]
+#Naive Approach
+#Time complexity = O(n^4)
+#Space complexity = O(n^4)
+def FourNumberSumNaiveApproach(arr,target):
+    sumNums=[]
     for i in range(0,len(arr)):
         for j in range(i,len(arr)):
             for k in range(j,len(arr)):
                 for l in range(k,len(arr)):
+                    if (arr[i]+arr[j]+arr[k]+arr[l])==target:
+                        sumNums.append([arr[i],arr[j],arr[k],arr[l]])
     
-                
-
-    return quadruplets
+    return sumNums
 
 if __name__=="__main__":
     arr=[7,6,4,-1,1,2]
     target=16
     print(FourNumberSum(arr,target))
+    print(FourNumberSumNaiveApproach(arr,target))
