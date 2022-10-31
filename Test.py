@@ -27,3 +27,7 @@
 # print(hash)
 # hash[5].append([2,3])
 # print(hash)
+
+# arr = [2, 3, 4, 5]
+# for i in reversed(range(len(arr))):
+#     print(arr[i])
