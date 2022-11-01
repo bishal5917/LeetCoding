@@ -1,4 +1,4 @@
-if i == sc and i>1:
-            #     ans.append(arr[sr][sc])
-            #     sr = sr + 1
-            #     return ans
+else:
+            #     while arr[j] > arr[j + 1]:
+            #         rewards[j] = max(rewards[j], rewards[j + 1] + 1)
+            #         j = j - 1
