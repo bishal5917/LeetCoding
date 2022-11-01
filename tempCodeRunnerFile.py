@@ -1,4 +1,8 @@
-else:
-            #     while arr[j] > arr[j + 1]:
-            #         rewards[j] = max(rewards[j], rewards[j + 1] + 1)
-            #         j = j - 1
+    for i in range(localmin, len(arr) - 1):
+            # if i not in localmins:
+            if arr[i + 1] > arr[i]:
+                rewards[i + 1] = max(rewards[i + 1], rewards[i] + 1)
+        for i in reversed(range(localmin + 1)):
+            # if i not in localmins:
+            if arr[i - 1] > arr[i]:
+                rewards[i - 1] = max(rewards[i - 1], rewards[i] + 1)
