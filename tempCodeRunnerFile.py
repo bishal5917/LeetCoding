@@ -1,1 +1,3 @@
-    currentMax = max(arr[a] - arr[b] + arr[c] - arr[d], currentMax)
+   if items[i][j] == num:
+    #         return True
+    # return False
