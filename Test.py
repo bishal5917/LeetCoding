@@ -38,6 +38,8 @@
 # if 5 in arr:
 #     print(True)
 
-arr = [2, 3, 4, 5]
-for i in reversed(range(2+1)):
-    print(arr[i])
+# arr = [2, 3, 4, 5]
+# for i in reversed(range(2+1)):
+#     print(arr[i])
+
+
