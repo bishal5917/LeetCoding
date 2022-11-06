@@ -42,4 +42,12 @@
 # for i in reversed(range(2+1)):
 #     print(arr[i])
 
-
+# 1 - 1
+# 2 - 10
+# 3 - 100
+# 4 - 1000
+# print(pow(10, n - 1))
+# num = 8762
+# p = 4
+# x = (num // (pow(10, (p - 1)))) % 10
+# print(x)
