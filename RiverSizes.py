@@ -8,25 +8,23 @@ def RiverSizes(graph):
                 visitedMatrix[i][j] = True
                 currRiverSize = 1
                 neighbours = getNeighbors(i, j, graph)
-                for item in neighbours:
-                    if graph[item[0]][item[1]] == 0:
+                if len(neighbours) == 0:
+                    riverSize.append(currRiverSize)
+                    continue
+                while len(neighbours):
+                    item = neighbours.pop()
+                    a = item[0]
+                    b = item[1]
+                    if graph[a][b] == 0:
                         continue
-                    elif (
-                        graph[item[0]][item[1]] == 1
-                        and visitedMatrix[item[0]][item[1]] == False
-                    ):
-                        visitedMatrix[item[0]][item[1]] = True
+                    elif graph[a][b] == 1 and visitedMatrix[a][b] == False:
+                        visitedMatrix[a][b] = True
                         currRiverSize += 1
-                    elif (
-                        graph[item[0]][item[1]] == 1
-                        and visitedMatrix[item[0]][item[1]] == True
-                    ):
+                        newNeighs = getNeighbors(a, b, graph)
+                        neighbours.extend(newNeighs)
+                    elif graph[a][b] == 1 and visitedMatrix[a][b] == True:
                         continue
-                riverSize.append(currRiverSize)
-                print(i, j)
-            # visitedMatrix = [
-            #     [False for i in range(len(graph))] for j in range(len(graph[0]))
-            # ]
+                    riverSize.append(currRiverSize)
 
     return riverSize
 
