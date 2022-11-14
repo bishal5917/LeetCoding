@@ -1,24 +1,30 @@
 def WordSearch(board, word):
-    idx = getIdxOfFirstLetter(board, word)
-    fidx = idx[0]
-    # for i in range(1, len(word)):
-    wordLocs = [idx[0]]
-    
-    i = 0
-    neighbs = getNeighbors(fidx[0], fidx[1], board)
+    idxs = getIdxOfFirstLetter(board, word)
 
-    while i < len(word):
-        # return neighbs
-        for item in neighbs:
-            if board[item[0]][item[1]] == word[i]:
-                # print(i)
-                wordLocs.append([item[0], item[1]])
-                neighbs = getNeighbors(item[0], item[1], board)
-                print(neighbs)
-            else:
-                continue
-        i += 1
-    return wordLocs, len(wordLocs) == len(word)
+    for item in idxs:
+        wordLocs = [item]
+
+        i = 0
+        neighbs = getNeighbors(item[0], item[1], board)
+
+        while i < len(word):
+            # return neighbs
+            for item in neighbs:
+                if board[item[0]][item[1]] == word[i]:
+                    # print(i)
+                    wordLocs.append([item[0], item[1]])
+                    neighbs = getNeighbors(item[0], item[1], board)
+                    print(neighbs)
+                else:
+                    continue
+            i += 1
+
+        if len(wordLocs) == len(word):
+            return wordLocs, True
+        else:
+            continue
+
+    return False
 
 
 def getIdxOfFirstLetter(board, word):
@@ -46,8 +52,9 @@ def getNeighbors(row, col, board):
 
 
 if __name__ == "__main__":
-    board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+    # board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
     # word = "ABCCED"
-    word = "ADEE"
+    # word = "ADEE"
+    board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+    word = "ABCB"
     print(WordSearch(board, word))
-    # print(getNeighbors(0, 1, board))
