@@ -24,7 +24,7 @@ class Solution(object):
 
             if len(wordLocs) == len(word):
                 # return wordLocs, True
-                return True
+                return wordLocs,True
             else:
                 continue
 
@@ -59,10 +59,8 @@ class Solution(object):
         return neighbors
 
 
-# board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-# word = "ABCCED"
-# word = "ADEE"
 board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-word = "SEE"
+word = "ABCCED"
+# word = "ADEE"
 obj = Solution()
 print(obj.exist(board, word))
