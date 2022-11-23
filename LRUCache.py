@@ -55,6 +55,16 @@ class DoublyLinkedList:
         x.prev.next = None
         x.next = None
 
+    def makeGivenNodeNewHead(self, val):
+        temp = self.head
+        while temp.data != val:
+            temp = temp.next
+        left = temp.prev
+        right = temp.next
+        temp.next = self.head
+        left.next = right
+        self.head = temp
+
     def printing(self):
         if self.head is None:
             print("---<Empty>---")
@@ -74,9 +84,10 @@ l = DoublyLinkedList()
 l.insertAtEnd(5)
 l.insertAtEnd(4)
 l.insertAtEnd(3)
-# l.insertAtBeginning(2)
-# l.insertAtBeginning(1)
+l.insertAtBeginning(2)
+l.insertAtBeginning(1)
 l.printing()
+l.makeGivenNodeNewHead(3)
 # l.removeHead()
 # l.removeTail()
 l.printing()
