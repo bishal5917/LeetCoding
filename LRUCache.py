@@ -10,7 +10,7 @@ class DoublyLinkedList:
         self.head = head
         self.tail = tail
 
-    def insert(self, data):
+    def insertAtEnd(self, data):
         newNode = node(data)
 
         if self.head is None:
@@ -25,6 +25,21 @@ class DoublyLinkedList:
 
         newNode.prev = current
         current.next = newNode
+        self.tail = newNode
+
+    def insertAtBeginning(self, data):
+        newNode = node(data)
+
+        if self.head is None:
+            self.head = newNode
+            self.tail = newNode
+            return
+
+        currhead = self.head
+        newNode.next = currhead
+        currhead.prev = newNode
+        newNode.prev = None
+        self.head = newNode
 
     def removeHead(self):
         # self.head=self.head.next
@@ -56,9 +71,11 @@ class DoublyLinkedList:
 
 
 l = DoublyLinkedList()
-l.insert(5)
-l.insert(4)
-l.insert(3)
+l.insertAtEnd(5)
+l.insertAtEnd(4)
+l.insertAtEnd(3)
+# l.insertAtBeginning(2)
+# l.insertAtBeginning(1)
 l.printing()
 # l.removeHead()
 # l.removeTail()
