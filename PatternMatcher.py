@@ -1,17 +1,26 @@
 def PatternMatcher(pattern, str):
     patternarr = []
-    for item in pattern:
-        patternarr.append(item)
+    # we are making sure that the pattern starts with "x" coz Algorithm is made thiswise
+    if pattern[0] == "x":
+        for item in pattern:
+            patternarr.append(item)
+    elif pattern[0] == "y":
+        for item in pattern:
+            if item == "y":
+                patternarr.append("x")
+            elif item == "x":
+                patternarr.append("y")
+    # return patternarr
 
     # getting first index of y
-    for i in range(0, len(pattern)):
-        if pattern[i] == "y":
+    for i in range(0, len(patternarr)):
+        if patternarr[i] == "y":
             firstYIdx = i
             break
 
     # count x and y
     countHash = {}
-    for item in pattern:
+    for item in patternarr:
         if item in countHash:
             countHash[item] += 1
         else:
@@ -27,7 +36,7 @@ def PatternMatcher(pattern, str):
         potentialX = str[0:lenOfX]
         potentialY = str[ystartingIdx : lenOfY + ystartingIdx]
         potentialString = ""
-        for item in pattern:
+        for item in patternarr:
             if item == "x":
                 potentialString = potentialString + potentialX
             if item == "y":
@@ -36,7 +45,7 @@ def PatternMatcher(pattern, str):
         lenOfX += 1
 
         if potentialString == str:
-            return True
+            return potentialX, potentialY
         else:
             continue
 
@@ -46,4 +55,6 @@ def PatternMatcher(pattern, str):
 if __name__ == "__main__":
     pattern = "xxyxxy"
     str = "gogopowerrangergogopowerranger"
+    # pattern = "xxy"
+    # str = "gogopower"
     print(PatternMatcher(pattern, str))
