@@ -8,8 +8,14 @@ def PatternMatcher(pattern, str):
         if pattern[i] == "y":
             firstYIdx = i
             break
-    
-    
+
+    # count x and y
+    countHash = {}
+    for item in pattern:
+        if item in countHash:
+            countHash[item] += 1
+        else:
+            countHash[item] = 1
 
 
 if __name__ == "__main__":
