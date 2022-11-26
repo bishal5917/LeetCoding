@@ -19,14 +19,28 @@ def PatternMatcher(pattern, str):
 
     # main part starts here
 
-    lenOfX = 2
+    lenOfX = 1
     while lenOfX != len(str):
         # we will keep increasing lenOfX till pattern matches
         lenOfY = (len(str) - lenOfX * countHash["x"]) // countHash["y"]
         ystartingIdx = firstYIdx * lenOfX
         potentialX = str[0:lenOfX]
         potentialY = str[ystartingIdx : lenOfY + ystartingIdx]
-        return potentialX, potentialY
+        potentialString = ""
+        for item in pattern:
+            if item == "x":
+                potentialString = potentialString + potentialX
+            if item == "y":
+                potentialString = potentialString + potentialY
+
+        lenOfX += 1
+
+        if potentialString == str:
+            return True
+        else:
+            continue
+
+    return False
 
 
 if __name__ == "__main__":
