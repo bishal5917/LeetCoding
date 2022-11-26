@@ -17,6 +17,17 @@ def PatternMatcher(pattern, str):
         else:
             countHash[item] = 1
 
+    # main part starts here
+
+    lenOfX = 2
+    while lenOfX != len(str):
+        # we will keep increasing lenOfX till pattern matches
+        lenOfY = (len(str) - lenOfX * countHash["x"]) // countHash["y"]
+        ystartingIdx = firstYIdx * lenOfX
+        potentialX = str[0:lenOfX]
+        potentialY = str[ystartingIdx : lenOfY + ystartingIdx]
+        return potentialX, potentialY
+
 
 if __name__ == "__main__":
     pattern = "xxyxxy"
