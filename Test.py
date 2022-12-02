@@ -52,8 +52,12 @@
 # x = (num // (pow(10, (p - 1)))) % 10
 # print(x)
 
-getLocations = [[0, 4], [10, 14], [14, 18], [20, 24], [23, 27], [26, 30]]
+# getLocations = [[0, 4], [10, 14], [14, 18], [20, 24], [23, 27], [26, 30]]
 
 # getLocations.pop(0)
-getLocations[1][0] = getLocations[2][1]
-print(getLocations)
+# getLocations[1][0] = getLocations[2][1]
+# print(getLocations)
+
+# nums = [1,2,3,4,5,6,7]
+# last=nums[-1]
+# print(last)
