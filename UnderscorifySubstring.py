@@ -21,11 +21,29 @@ def UnderscorifySubstring(str, substr):
             mergedLocations.append(current)
             previous = current
 
-    # print(locations)
-    # print(mergedLocations)
-    
+    # Finally underscorifying
+    locationsIdx = 0
+    stringIdx = 0
+    inBetweenUnderscores = False
+    finalchars = []
+    i = 0
+    while startIdx < len(str) and locationsIdx < len(mergedLocations):
+        if stringIdx == mergedLocations[locationsIdx][i]:
+            finalchars.append("_")
+            inBetweenUnderscores = not inBetweenUnderscores
+            if not inBetweenUnderscores:
+                locationsIdx += 1
+            i = 0 if i == 1 else 1
+        finalchars.append(str[stringIdx])
+        stringIdx += 1
+    if locationsIdx < len(mergedLocations):
+        finalchars.append("_")
+    elif startIdx < len(str):
+        finalchars.append(str[stringIdx:])
+    return "".join(finalchars)
+
 
 if __name__ == "__main__":
     str = "testthis is a testtest to see if testestest it works"
     substr = "test"
-    UnderscorifySubstring(str, substr)
+    print(UnderscorifySubstring(str, substr))
