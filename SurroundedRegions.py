@@ -4,10 +4,19 @@ class Solution(object):
 
         for poss in zeroesPos:
             neighs = self.getNeighbors(poss[0], poss[1], board)
-            if len(neighs) == 4:
+            if len(neighs) == 4 and self.checkValidToALter(neighs, board):
                 board[poss[0]][poss[1]] = "X"
 
         return board
+
+    def checkValidToALter(self, neighs, board):
+        borders = self.getBorders(board)
+        zeroesPos = self.getZeroesPos(board)
+        for item in neighs:
+            if item in borders and item in zeroesPos:
+                return False
+
+        return True
 
     def getZeroesPos(self, board):
         zeroesPos = []
@@ -29,16 +38,40 @@ class Solution(object):
             neighbors.append([row + 1, col])
         return neighbors
 
+    def getBorders(self, board):
+        sr = 0
+        sc = 0
+        er = len(board) - 1
+        ec = len(board[0]) - 1
+        borders = []
+
+        for i in range(sc, ec + 1):
+            borders.append([sr, i])
+        for i in range(sr + 1, er + 1):
+            borders.append([i, ec])
+        for i in reversed(range(sc, ec)):
+            borders.append([er, i])
+        for i in reversed(range(sr + 1, er)):
+            borders.append([i, sr])
+
+        return borders
+
 
 if __name__ == "__main__":
     board = [
-        ["X", "X", "X", "X"],
-        ["X", "O", "O", "X"],
-        ["X", "X", "O", "X"],
-        ["X", "O", "X", "X"],
+        ["O", "X", "X", "O", "X"],
+        ["X", "O", "O", "X", "O"],
+        ["X", "O", "X", "O", "X"],
+        ["O", "X", "O", "O", "O"],
+        ["X", "X", "O", "X", "O"],
     ]
-    board = [["X", "X", "X"], ["X", "O", "X"], ["X", "X", "X"]]
-    # board = ["X"]
-    # OUTPUT : [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
+    # output = [
+    #     ["O", "X", "X", "O", "X"],
+    #     ["X", "X", "X", "X", "O"],
+    #     ["X", "X", "X", "O", "X"],
+    #     ["O", "X", "O", "O", "O"],
+    #     ["X", "X", "O", "X", "O"],
+    # ]
     obj = Solution()
     print(obj.solve(board))
+    # print(obj.getBorders(board))

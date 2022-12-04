@@ -84,3 +84,18 @@
 # b=3
 # tmp = (a & b)<<1
 # print(tmp)
+
+# nhs=[4,4,3]
+# fourCount=0
+# for item in nhs:
+#     if item==4:
+#         fourCount+=1
+# print(len(nhs)==fourCount)
+
+# nhs = [[1, 0], [1, 1], [1, 2]]
+# ok = [[1, 0], [2, 1]]
+# for item in ok:
+#     if item in nhs:
+#         print(True)
+#     else:
+#         print(False)
