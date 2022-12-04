@@ -77,3 +77,10 @@
 # nums = [[], [3], [2], [1], [], [], []]
 # for i in range(len(nums) - 1, 0, -1):
 #     print(nums[i])
+
+# mask = 0xFFFFFFFF
+# print(mask)
+# a=2
+# b=3
+# tmp = (a & b)<<1
+# print(tmp)
