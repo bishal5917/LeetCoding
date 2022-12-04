@@ -73,3 +73,7 @@
 # print(nums.pop(1))
 # print(4 + 5 // 13)
 # print(math.trunc(13 / 5))
+
+# nums = [[], [3], [2], [1], [], [], []]
+# for i in range(len(nums) - 1, 0, -1):
+#     print(nums[i])
