@@ -68,3 +68,8 @@
 
 # print(3%3)
 # print(4%2)
+
+# nums = [1, 2]
+# print(nums.pop(1))
+# print(4 + 5 // 13)
+# print(math.trunc(13 / 5))
