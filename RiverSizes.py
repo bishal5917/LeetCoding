@@ -31,13 +31,13 @@ def RiverSizes(graph):
 
 def getNeighbors(row, col, graph):
     neighbors = []
-    if (col + 1) < len(graph[0]) - 1:
+    if (col + 1) <= len(graph[0]) - 1:
         neighbors.append([row, col + 1])
     if (col - 1) >= 0:
         neighbors.append([row, col - 1])
     if (row - 1) >= 0:
         neighbors.append([row - 1, col])
-    if (row + 1) < len(graph) - 1:
+    if (row + 1) <= len(graph) - 1:
         neighbors.append([row + 1, col])
     return neighbors
 
