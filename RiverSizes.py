@@ -1,32 +1,30 @@
 # A classic Graph Traversal Question
-def RiverSizes(graph):
-    visitedMatrix = [[False for i in range(len(graph))] for j in range(len(graph[0]))]
-    riverSize = []
-    for i in range(len(graph)):
-        for j in range(len(graph[0])):
-            if graph[i][j] == 1 and visitedMatrix[i][j] == False:
-                visitedMatrix[i][j] = True
-                currRiverSize = 1
-                neighbours = getNeighbors(i, j, graph)
-                if len(neighbours) == 0:
-                    riverSize.append(currRiverSize)
-                    continue
-                while len(neighbours):
-                    item = neighbours.pop()
-                    a = item[0]
-                    b = item[1]
-                    if graph[a][b] == 0:
-                        continue
-                    elif graph[a][b] == 1 and visitedMatrix[a][b] == False:
-                        visitedMatrix[a][b] = True
-                        currRiverSize += 1
-                        newNeighs = getNeighbors(a, b, graph)
-                        neighbours.extend(newNeighs)
-                    elif graph[a][b] == 1 and visitedMatrix[a][b] == True:
-                        continue
-                    riverSize.append(currRiverSize)
+def riverSizes(matrix):
+    visited = []
+    Rivers = []
 
-    return riverSize
+    for i in range(0, len(matrix)):
+        for j in range(0, len(matrix[0])):
+            if matrix[i][j] == 1 and [i, j] not in visited:
+                visited.append([i, j])
+                BFSInGrid(matrix, visited, i, j)
+                lenVisited = len(visited)
+                Rivers.append(lenVisited - sum(Rivers))
+
+    return Rivers
+
+
+def BFSInGrid(grid, visited, i, j):
+    queue = [[i, j]]
+    while queue:
+        first = queue.pop(0)
+        allneighs = getNeighbors(first[0], first[1], grid)
+        for item in allneighs:
+            if item not in visited and grid[item[0]][item[1]] != 0:
+                queue.append(item)
+                visited.append(item)
+
+    return visited
 
 
 def getNeighbors(row, col, graph):
@@ -50,4 +48,4 @@ if __name__ == "__main__":
         [1, 0, 1, 0, 1],
         [1, 0, 1, 1, 0],
     ]
-    print(RiverSizes(graph))
+    print(riverSizes(graph))
