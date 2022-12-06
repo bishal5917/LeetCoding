@@ -10,9 +10,9 @@ class ourlist:
 
     def insert(self, data):
         newNode = node(data)
-        if (self.head):
+        if self.head:
             currNode = self.head
-            while(currNode.next):
+            while currNode.next:
                 currNode = currNode.next
             currNode.next = newNode
         else:
@@ -31,7 +31,7 @@ class ourlist:
 
     def printing(self):
         currNode = self.head
-        while(currNode):
+        while currNode:
             print(currNode.data, end=" ")
             currNode = currNode.next
 

@@ -99,3 +99,7 @@
 #         print(True)
 #     else:
 #         print(False)
+
+# nhs = [[1, 0], [1, 1], [1, 2]]
+# ok = nhs.pop(0)
+# print(ok)
