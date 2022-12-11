@@ -107,3 +107,9 @@
 # print(2023 % 4)
 # print(1900 % 4)
 # print(1900 % 100)
+
+# a=[5,6,7,8]
+# i=2
+# a.remove(a[i])
+# a.append(0)
+# print(a[i])
