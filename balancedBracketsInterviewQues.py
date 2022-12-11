@@ -1,24 +1,34 @@
+def isValid(s):
+    match = {"(": ")", "{": "}", "[": "]"}
+    open = "({["
+    closed = ")}]"
+    st = []
 
-def bb(string):
-    openingbrackets = "([{"
-    closingbrackets = ")}]"
-    matchingbrackets = {")": "(", "]": "[", "}": "{"}
+    if s[0] in closed:
+        return False
 
-    stack = []
-    for char in string:
-        if char in openingbrackets:
-            stack.append(char)
-        elif char in closingbrackets:
-            if len(stack) == 0:
-                print("unbalanced")
-            if stack[-1] == matchingbrackets[char]:
-                stack.pop()
-                # stack.pop()
-            else:
-                print("not balanced")
+    for item in s:
+        if item in open:
+            st.append(item)
+        if item in closed and len(st) != 0:
+            lastOne = st[-1]
+            if match[lastOne] == item:
+                st.pop()
+            elif match[lastOne] != item:
+                return False
+        if item in closed and len(st) == 0:
+            return False
 
-    if len(stack) == 0:
-        print("balanced")
+    if len(st) == 0:
+        return True
+    else:
+        return False
 
 
-bb("{[][[[{]}")
+# s = "(]"
+# s = "()[]{}"
+s = "]"
+# s = "(){}}{"
+s = "(])"
+s = "[])"
+print(isValid(s))
