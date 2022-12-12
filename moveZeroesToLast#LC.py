@@ -1,18 +1,13 @@
-nums=[1,0,0,8,0,0,8,6,0,4,5,7]
+def moveZeroes(nums):
 
-# counting the number of zeroes in a list
-count_0=nums.count(0)
-# print(count_0)
+    for item in nums:
+        if item == 0:
+            nums.remove(item)
+            nums.append(0)
 
-next=[]
-# appending non-zeroes nums in an empty list
-for item in nums:
-    if item != 0:
-        next.append(item)
+    return nums
 
-# finally appending all those zeroes at last
-for i in range(count_0):
-    next.append(0)
 
-# printing our final ans
-print(next)
+if __name__ == "__main__":
+    nums = [0, 1, 0, 3, 12]
+    print(moveZeroes(nums))

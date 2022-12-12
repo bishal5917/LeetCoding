@@ -28,5 +28,3 @@ def moveElementToEnd(array,target):
 array=[2,1,2,2,4,6,8]
 x=moveElementToEnd(array,2)
 print(x)
-
-# google interview problem solved by myself , starting to get more confident
