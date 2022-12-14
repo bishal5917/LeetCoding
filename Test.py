@@ -113,3 +113,5 @@
 # a.remove(a[i])
 # a.append(0)
 # print(a[i])
+
+# print(0 + 4 // 2)

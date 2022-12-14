@@ -18,7 +18,7 @@ def binarySearchFunc(list,toFind,left,right):
 if __name__=="__main__":
     list=[1,2,45,67,87,105,107,108,109,110,200,300,400,800,1000,1010]
     first=time.time()
-    x=binarySearchFunc(list,1000,0,len(list)-1)
+    x=binarySearchFunc(list,1010,0,len(list)-1)
     print(f"It took {time.time()-first} time")
     print(x)
   
