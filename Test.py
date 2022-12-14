@@ -115,3 +115,6 @@
 # print(a[i])
 
 # print(0 + 4 // 2)
+# print(27//3)
+# print(9//3)
+# print(3//3)
