@@ -1,6 +1,6 @@
 def HappyNumber(n):
 
-    if n % 3 != 0 or n == 0:
+    if n < 1:
         return False
 
     while n % 3 == 0:
