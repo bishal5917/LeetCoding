@@ -12,10 +12,12 @@ class MinHeap:
     def remove(self):
         self.swap(0, len(self.heap) - 1, self.heap)
         toRemove = self.heap.pop()
-        # self.siftDown(0, len(self.heap) - 1, self.heap)
         return toRemove, self.siftDown(0, len(self.heap) - 1, self.heap)
 
     def buildHeap(self, arr):
+        firstParentIdx = (len(arr) - 1) // 2
+        for idx in reversed(range(firstParentIdx)):
+            self.siftDown(idx, len(arr) - 1, arr)
         return arr
 
     def siftDown(self, currIdx, endIdx, heap):
