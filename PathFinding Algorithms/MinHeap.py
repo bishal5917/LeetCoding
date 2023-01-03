@@ -10,7 +10,10 @@ class MinHeap:
         return self.siftUp(len(self.heap) - 1, self.heap)
 
     def remove(self):
-        pass
+        self.swap(0, len(self.heap) - 1, self.heap)
+        toRemove = self.heap.pop()
+        self.siftDown(0, len(self.heap) - 1, self.heap)
+        return toRemove
 
     def buildHeap(self, arr):
         return arr
