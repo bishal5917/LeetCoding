@@ -7,15 +7,7 @@ class MinHeap:
 
     def insert(self, value):
         self.heap.append(value)
-        lastIdx = len(self.heap) - 1
-        parentIdx = (lastIdx - 1) // 2
-        while True:
-            if self.heap[parentIdx] > value:
-                self.swap(parentIdx, lastIdx, self.heap)
-            lastIdx = parentIdx
-            parentIdx = (parentIdx - 1) // 2
-            if not parentIdx:
-                return self.heap
+        return self.siftUp(len(self.heap) - 1, self.heap)
 
     def remove(self):
         pass
@@ -27,7 +19,15 @@ class MinHeap:
         pass
 
     def siftUp(self, currIdx, heap):
-        pass
+        parentIdx = (currIdx - 1) // 2
+        while True:
+            value = heap[currIdx]
+            if self.heap[parentIdx] > value:
+                self.swap(parentIdx, currIdx, heap)
+            currIdx = parentIdx
+            parentIdx = (currIdx - 1) // 2
+            if not parentIdx:
+                return heap
 
     def swap(self, i, j, heap):
         heap[i], heap[j] = heap[j], heap[i]
