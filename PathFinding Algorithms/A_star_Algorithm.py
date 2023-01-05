@@ -21,6 +21,28 @@ def aStarAlgo(startRow, startCol, endRow, endCol, graph):
     # Now getting the MinHeap
     nodesToVisit = MinHeap([startNode])
 
+    while not nodesToVisit.isEmpty():
+        # first element will be removed from heap and returned as it will be the least one
+        currentMinNode = nodesToVisit.remove()
+        if currentMinNode == endNode:
+            break
+        neighbours = getNeighbors(currentMinNode, nodes)
+
+
+def getNeighbors(currNode, nodes):
+    neighbors = []
+    row = currNode.row
+    col = currNode.col
+    if (col + 1) <= len(nodes[0]) - 1:
+        neighbors.append(nodes[row][col + 1])
+    if (col - 1) >= 0:
+        neighbors.append(nodes[row][col - 1])
+    if (row - 1) >= 0:
+        neighbors.append(nodes[row - 1][col])
+    if (row + 1) <= len(nodes) - 1:
+        neighbors.append(nodes[row + 1][col])
+    return neighbors
+
 
 def calculateHeuristic(startNode, endNode):
     # Here we are using Manhattan Distance for calculating heuristic
