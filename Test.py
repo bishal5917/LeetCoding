@@ -120,3 +120,32 @@
 # print(3//3)
 
 # print(2%5)
+# class Node:
+#     def __init__(self, row, col, value):
+#         self.id = str(row) + "-" + str(col)
+#         self.row = row
+#         self.col = col
+#         self.value = value
+#         self.g_score = float("inf")
+#         self.f_score = float("inf")
+#         self.previous = None
+
+
+# grid = [
+#     [1, "S", 1, 1, 1],
+#     [1, "#", "#", "#", 1],
+#     [1, 1, 1, 1, 1],
+#     ["#", 1, "#", "#", "#"],
+#     [1, 1, 1, "E", 1],
+# ]
+
+# nodes = []
+
+# for i, row in enumerate(grid):
+#     nodes.append([])
+#     # print(i,row)
+#     for j, value in enumerate(row):
+#         print(j, value)
+#         nodes[i].append(Node(i, j, value))
+
+# print(nodes)

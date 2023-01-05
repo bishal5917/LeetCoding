@@ -11,7 +11,24 @@ class Node:
 
 def aStarAlgo(startRow, startCol, endRow, endCol, graph):
     nodes = initializeNodes(graph)
-    print(nodes[1][1].value)
+    # print(nodes[1][1].value)
+    startNode = nodes[startRow][startCol]
+    endNode = nodes[endRow][endCol]
+    startNode.g_score = 0
+    startNode.f_score = startNode.g_score + calculateHeuristic(startNode, endNode)
+    # print(startNode.f_score)
+
+    # Now getting the MinHeap
+
+
+def calculateHeuristic(startNode, endNode):
+    # Here we are using Manhattan Distance for calculating heuristic
+    a = startNode.row
+    b = startNode.col
+    c = endNode.row
+    d = endNode.col
+    dist = abs(c - a) + abs(d - b)
+    return dist
 
 
 # A function to initialize nodes of a graph with more details needed --
