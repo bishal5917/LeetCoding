@@ -40,7 +40,7 @@ def aStarAlgo(startRow, startCol, endRow, endCol, graph):
                 neighbor, endNode
             )
 
-            if not nodesToVisit.contains(neighbor):
+            if not nodesToVisit.containsNode(neighbor):
                 nodesToVisit.insert(neighbor)
             else:
                 nodesToVisit.update(neighbor)
@@ -48,7 +48,18 @@ def aStarAlgo(startRow, startCol, endRow, endCol, graph):
     return returnPath(endNode)
 
 
+def returnPath(endNode):
+    if not endNode.previous:
+        return []
 
+    currNode = endNode
+    path = []
+
+    while currNode:
+        path.append([currNode.row, currNode.col])
+        currNode = currNode.previous
+
+    return path[::-1]
 
 
 def getNeighbors(currNode, nodes):
@@ -170,4 +181,4 @@ if __name__ == "__main__":
     startCol = 1
     endRow = 4
     endCol = 3
-    aStarAlgo(startRow, startCol, endRow, endCol, grid)
+    print(aStarAlgo(startRow, startCol, endRow, endCol, grid))
