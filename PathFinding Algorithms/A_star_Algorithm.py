@@ -27,6 +27,28 @@ def aStarAlgo(startRow, startCol, endRow, endCol, graph):
         if currentMinNode == endNode:
             break
         neighbours = getNeighbors(currentMinNode, nodes)
+        for neighbor in neighbours:
+            if neighbor.value == "#":
+                continue
+            tenativeDisToNeighbour = currentMinNode.g_score + 1
+
+            if tenativeDisToNeighbour >= neighbor.g_score:
+                continue
+            neighbor.previous = currentMinNode
+            neighbor.g_score = tenativeDisToNeighbour
+            neighbor.f_score = tenativeDisToNeighbour + calculateHeuristic(
+                neighbor, endNode
+            )
+
+            if not nodesToVisit.contains(neighbor):
+                nodesToVisit.insert(neighbor)
+            else:
+                nodesToVisit.update(neighbor)
+
+    return returnPath(endNode)
+
+
+
 
 
 def getNeighbors(currNode, nodes):
