@@ -1,5 +1,4 @@
 def BFSInGrid(grid, start, end):
-
     visited = [start]
     queue = [start]
     prev = [start]
