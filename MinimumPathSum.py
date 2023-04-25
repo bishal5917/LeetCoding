@@ -9,6 +9,7 @@ def minPathSum(grid):
                 final[gidx][i] = grid[gidx][i] + final[gidx][i + 1]
             if gidx + 1 < len(grid) and i + 1 >= len(grid[gidx]):
                 final[gidx][i] = final[gidx + 1][i] + grid[gidx][i]
+            # REPLACE MIN WITH MAX TO FIND MAXIMUM PATH SUM
             if gidx + 1 < len(grid) and i + 1 < len(grid[gidx]):
                 final[gidx][i] = min(
                     grid[gidx][i] + final[gidx][i + 1],
