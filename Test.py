@@ -149,3 +149,7 @@
 #         nodes[i].append(Node(i, j, value))
 
 # print(nodes)
+
+# str="a"
+# str+="bc"
+# print(str)
