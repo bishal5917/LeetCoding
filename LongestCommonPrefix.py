@@ -1,5 +1,9 @@
 def longestCommonPrefix(strs):
-    pass
+    
+    for i in range(len(strs)):
+        for item in strs[i]:
+            print(item)
+
 
 
 if __name__ == "__main__":
