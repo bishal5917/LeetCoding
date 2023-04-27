@@ -153,3 +153,7 @@
 # str="a"
 # str+="bc"
 # print(str)
+
+# a = "alice3"
+# if int(a):
+#     print(True)
