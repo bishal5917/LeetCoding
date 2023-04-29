@@ -157,3 +157,9 @@
 # a = "alice3"
 # if int(a):
 #     print(True)
+
+# x = "aba"
+# print(sorted(x))
+
+# strr="b"
+# print(ord(strr))
