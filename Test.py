@@ -163,3 +163,6 @@
 
 # strr="b"
 # print(ord(strr))
+
+# s="iyda"
+# print(s.split(" "))
