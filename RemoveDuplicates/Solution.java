@@ -1,4 +1,3 @@
-// package RemoveDuplicates;
 
 public class Solution {
     public ListNode deleteDuplicates(ListNode head, MyLinkedList list) {
@@ -58,18 +57,6 @@ class MyLinkedList {
 
     MyLinkedList() {
         this.root = null;
-    }
-
-    void insertAtFirst(int value) {
-        ListNode newNode = new ListNode(value, null);
-
-        if (root == null) {
-            root = newNode;
-        } else {
-            ListNode currNode = root;
-            newNode.next = currNode;
-            root = newNode;
-        }
     }
 
     void insertAtLast(int value) {

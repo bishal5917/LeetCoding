@@ -1,9 +1,7 @@
 
 public class Solution {
+    public ListNode reverseLinkedList(ListNode head) {
 
-    public boolean isPalindrome(ListNode head) {
-
-        // reversing the linked list
         ListNode temp = head;
         ListNode prev = null;
         while (temp != null) {
@@ -13,30 +11,20 @@ public class Solution {
             temp = nextOne;
         }
 
-        // ListNode head = head;
-        ListNode headOfReversed = prev;
-
-        while (head != null && headOfReversed != null) {
-            if (head.val != headOfReversed.val) {
-                return false;
-            }
-            head = head.next;
-            headOfReversed = headOfReversed.next;
-        }
-
-        return true;
-
+        // prev will always be our new head after getting reversed
+        return prev;
     }
 
     public static void main(String[] args) {
         MyLinkedList MyLinkedListA = new MyLinkedList();
         MyLinkedListA.insertAtLast(1);
-        MyLinkedListA.insertAtLast(1);
         MyLinkedListA.insertAtLast(2);
-        MyLinkedListA.insertAtLast(1);
+        MyLinkedListA.insertAtLast(3);
+        MyLinkedListA.insertAtLast(4);
+        MyLinkedListA.insertAtLast(5);
         Solution m = new Solution();
-        Boolean returned = m.isPalindrome(MyLinkedListA.root);
-        System.out.println(returned);
+        ListNode newHead = m.reverseLinkedList(MyLinkedListA.root);
+        System.out.println(newHead.val);
     }
 }
 
