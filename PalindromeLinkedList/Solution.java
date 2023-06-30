@@ -1,22 +1,21 @@
 
 public class Solution {
-    public ListNode removeElements(ListNode head, int val, MyLinkedList list) {
-        ListNode dummy = new ListNode(-1, head);
-        ListNode prev = dummy;
-        ListNode curr = head;
 
-        while (curr != null) {
-            if (curr.val == val) {
-                ListNode newCurr = curr.next;
-                prev.next = newCurr;
-                curr = newCurr;
-            } else {
-                prev = curr;
-                curr = curr.next;
+    public boolean isPalindrome(ListNode head) {
+
+        ListNode first = head;
+        ListNode last = head;
+
+        while (last.next != null) {
+            last = last.next;
+        }
+
+        while (first != last) {
+            if (first.val == last.val) {
+
             }
         }
-        list.printList();
-        return dummy.next;
+        return false;
 
     }
 
@@ -24,14 +23,12 @@ public class Solution {
         MyLinkedList MyLinkedListA = new MyLinkedList();
         MyLinkedListA.insertAtLast(1);
         MyLinkedListA.insertAtLast(2);
-        MyLinkedListA.insertAtLast(6);
-        MyLinkedListA.insertAtLast(3);
-        MyLinkedListA.insertAtLast(4);
-        MyLinkedListA.insertAtLast(5);
-        MyLinkedListA.insertAtLast(6);
+        MyLinkedListA.insertAtLast(2);
+        MyLinkedListA.insertAtLast(1);
         Solution m = new Solution();
-        m.removeElements(MyLinkedListA.root, 6, MyLinkedListA);
+        m.isPalindrome(MyLinkedListA.root);
     }
+
 }
 
 class ListNode {
@@ -56,6 +53,18 @@ class MyLinkedList {
 
     MyLinkedList() {
         this.root = null;
+    }
+
+    void insertAtFirst(int value) {
+        ListNode newNode = new ListNode(value, null);
+
+        if (root == null) {
+            root = newNode;
+        } else {
+            ListNode currNode = root;
+            newNode.next = currNode;
+            root = newNode;
+        }
     }
 
     void insertAtLast(int value) {
