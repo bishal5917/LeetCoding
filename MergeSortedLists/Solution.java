@@ -2,28 +2,33 @@
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 
-        MyLinkedList merged = new MyLinkedList();
         ListNode i = list1;
         ListNode j = list2;
+        ListNode dummy = new ListNode();
+        ListNode merged = dummy;
         while (i != null && j != null) {
             if (i.val <= j.val) {
-                merged.insertAtLast(i.val);
+                merged.next = i;
+                merged = merged.next;
                 i = i.next;
             } else {
-                merged.insertAtLast(j.val);
+                merged.next = j;
+                merged = merged.next;
                 j = j.next;
             }
         }
         while (i != null) {
-            merged.insertAtLast(i.val);
+            merged.next = i;
+            merged = merged.next;
             i = i.next;
         }
         while (j != null) {
-            merged.insertAtLast(j.val);
+            merged.next = j;
+            merged = merged.next;
             j = j.next;
         }
-        merged.printList();
-        return merged.root;
+
+        return dummy.next;
     }
 
     public static void main(String[] args) {
@@ -37,7 +42,8 @@ class Solution {
         MyLinkedListB.insertAtLast(4);
 
         Solution m = new Solution();
-        m.mergeTwoLists(MyLinkedListA.root, MyLinkedListB.root);
+        ListNode headOfMerged = m.mergeTwoLists(MyLinkedListA.root, MyLinkedListB.root);
+        System.out.println(headOfMerged.val);
     }
 }
 
@@ -63,18 +69,6 @@ class MyLinkedList {
 
     MyLinkedList() {
         this.root = null;
-    }
-
-    void insertAtFirst(int value) {
-        ListNode newNode = new ListNode(value, null);
-
-        if (root == null) {
-            root = newNode;
-        } else {
-            ListNode currNode = root;
-            newNode.next = currNode;
-            root = newNode;
-        }
     }
 
     void insertAtLast(int value) {
