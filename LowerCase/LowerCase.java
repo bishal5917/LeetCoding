@@ -1,4 +1,6 @@
 
+package LowerCase;
+
 class LowerCase {
     public String convertToLowerCase(String s) {
         return s.toLowerCase();

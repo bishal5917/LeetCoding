@@ -1,14 +1,12 @@
-import java.util.ArrayList;
+package NextGreater;
+
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class NextGreater {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         int[] nextGreaterList = new int[nums1.length];
         int findGreaterThan;
         int nextGreater;
-        int idxStart;
         for (int x = 0; x < nums1.length; x++) {
             nextGreater = -1;
             findGreaterThan = nums1[x];

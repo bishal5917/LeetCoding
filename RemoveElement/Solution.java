@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+package RemoveElement;
 
 public class Solution {
     public int removeElement(int[] nums, int val) {

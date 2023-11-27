@@ -1,3 +1,5 @@
+package CharacterCounter;
+
 import java.util.HashMap;
 import java.util.Map;
 

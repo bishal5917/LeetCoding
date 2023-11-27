@@ -1,4 +1,4 @@
-// package JavaOOPS;
+package JavaOOPS;
 
 public class Inheritance {
 

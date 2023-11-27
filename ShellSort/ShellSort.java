@@ -1,4 +1,4 @@
-// package ShellSort;
+package ShellSort;
 
 import java.util.Arrays;
 

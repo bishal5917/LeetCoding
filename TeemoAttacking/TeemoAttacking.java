@@ -1,6 +1,4 @@
-
-import java.util.ArrayList;
-import java.util.List;
+package TeemoAttacking;
 
 public class TeemoAttacking {
     public int findPoisonedDuration(int[] timeSeries, int duration) {
