@@ -1,1 +1,0 @@
-    final[idx][num] = final[idx][num + 1] + final[idx + 1][num]
