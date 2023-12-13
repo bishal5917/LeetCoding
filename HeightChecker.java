@@ -18,7 +18,7 @@ public class HeightChecker {
             if (heights[i] != unsorted.get(i)) {
                 count += 1;
             }
-            i+=1;
+            i += 1;
         }
 
         System.out.println(count);
