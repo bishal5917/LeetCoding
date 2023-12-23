@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// O(nlog(n)) time and O(n) space
 public class TwoSumSorted {
 
     public int[] twoSum(int[] numbers, int target) {
