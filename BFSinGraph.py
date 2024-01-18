@@ -1,7 +1,7 @@
 import collections
 
 # BFS algorithm
-def bfs(graph, root):
+def BFSInGraph(graph, root):
 
     visited, queue = set(), collections.deque([root])
     visited.add(root)
@@ -23,4 +23,4 @@ def bfs(graph, root):
 if __name__ == '__main__':
     graph = {0: [1, 2], 1: [2], 2: [3], 3: [1, 2]}
     print("Following is Breadth First Traversal: ")
-    bfs(graph, 0)
+    BFSInGraph(graph, 0)
