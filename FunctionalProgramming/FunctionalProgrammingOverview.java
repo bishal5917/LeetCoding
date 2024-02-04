@@ -3,11 +3,46 @@ package FunctionalProgramming;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-//WHAT IS FUNCTIONAL PROGRAMMING ???
-// Functional programming is all about giving first class definitions to the functions.
+//Using Predicate
+class EvenNumberPredicate implements Predicate<Integer> {
+
+        @Override
+        public boolean test(Integer t) {
+                return t % 2 == 0;
+        }
+
+}
+
+// Using consumer
+class SysOutConsumer implements Consumer<Integer> {
+
+        @Override
+        public void accept(Integer t) {
+                System.out.println(t);
+        }
+
+}
+
+// Using mapper or map interface
+// Function<InputType,OutputType>
+class SquareMapper implements Function<Integer, Integer> {
+
+        @Override
+        public Integer apply(Integer t) {
+                return t * t;
+        }
+
+}
+
+// WHAT IS FUNCTIONAL PROGRAMMING ???
+// Functional programming is all about giving first class definitions to the
+// functions.
 public class FunctionalProgrammingOverview {
 
         public static void main(String[] args) {
@@ -58,12 +93,48 @@ public class FunctionalProgrammingOverview {
                 IntStream.range(0, 10)
                                 .map(e -> e * e)
                                 .forEach(e -> System.out.println(e));
+                // Using method references (System.out::println points to e-> )
+                // We get same output
+                IntStream.range(0, 10)
+                                .map(e -> e * e)
+                                .forEach(System.out::println);
                 System.out.println("SQUARES OF FIRST 10 NUMS AND COLLECT IT TO A LIST");
                 List<Integer> first10NumsSquares = IntStream.range(0, 10)
                                 .map(e -> e * e)
                                 .boxed()
                                 .collect(Collectors.toList());
                 System.out.println(first10NumsSquares);
+
+                // USING PREDICATES (BEHIND THE SCENES WHAT IS HAPPENING)
+                // NORMALLY
+                System.out.println("Normal");
+                nums.stream()
+                                .filter(e -> e % 2 == 0).forEach(e -> System.out.println(e));
+                // SAME OUTPUT USING PREDICATES
+                System.out.println("Using predicates");
+                nums.stream()
+                                .filter(new EvenNumberPredicate()).forEach(e -> System.out.println(e));
+                // USING PREDICATES AS WELL AS CONSUMERS
+                // SAME OUTPUT USING PREDICATES AND CONSUMERS
+                System.out.println("Using predicates and consumers");
+                nums.stream()
+                                .filter(new EvenNumberPredicate()).forEach(new SysOutConsumer());
+                System.out.println("Using Predicate,Consumer and Mapper");
+                nums.stream()
+                                .filter(new EvenNumberPredicate())
+                                .map(new SquareMapper())
+                                .forEach(new SysOutConsumer());
+
+                // Passing functions into variables
+                Predicate<? super Integer> evenPredicate = n -> n % 2 == 0;
+                Predicate<? super Integer> oddPredicate = n -> n % 2 == 1;
+                // AND NOW WE CAN USE THEM
+                nums.stream()
+                                .filter(evenPredicate)
+                                .forEach(e -> System.out.println(e));
+                nums.stream()
+                                .filter(oddPredicate)
+                                .forEach(e -> System.out.println(e));
 
         }
 
