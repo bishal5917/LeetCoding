@@ -1,30 +1,27 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Permutations {
 
     public List<List<Integer>> permute(int[] nums) {
-        List<Integer> vals = new ArrayList<>();
-        for (int val : nums) {
-            vals.add(val);
-        }
-        return findPermute(vals, new ArrayList<>());
+        boolean[] used = new boolean[nums.length];
+        return findPermute(nums, new ArrayList<>(), new ArrayList<>(), used);
     }
 
-    private List<List<Integer>> findPermute(List<Integer> nums, List<List<Integer>> allPerms) {
-        if (nums.size() == 1) {
-            allPerms.add(new ArrayList<>(nums));
+    private List<List<Integer>> findPermute(int[] nums, List<Integer> currPerm, List<List<Integer>> allPerms,
+            boolean[] used) {
+        if (currPerm.size() == nums.length) {
+            allPerms.add(new ArrayList<>(currPerm));
             return allPerms;
         }
-        for (int i = 0; i < nums.size(); i++) {
-            int popped = nums.remove(i);
-            List<List<Integer>> vals = findPermute(nums, allPerms);
-            nums.add(i, popped);
-            for (List<Integer> perm : vals) {
-                perm.add(popped);
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i] == false) {
+                used[i] = true;
+                currPerm.add(nums[i]);
+                findPermute(nums, currPerm, allPerms, used);
+                used[i] = false;
+                currPerm.remove(currPerm.size() - 1);
             }
-            System.out.println(allPerms);
         }
         return allPerms;
     }
