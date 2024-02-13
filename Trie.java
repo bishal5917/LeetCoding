@@ -39,6 +39,10 @@ public class Trie {
 
     private TrieNode root;
 
+    public TrieNode getRoot() {
+        return root;
+    }
+
     public Trie() {
         // instantiate a root node
         root = new TrieNode(new HashMap<>(), false);
