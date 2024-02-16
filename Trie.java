@@ -31,10 +31,6 @@ class TrieNode {
     }
 }
 
-// THIS IS A PREFIX TRIE
-// HOWEVER FOR BUILDING A PREFIX TRIE ,JUST ALTER THE INSERTION AND CHECKING
-// PROCESS (FROM END OF WORD - > START OF THE WORD)
-
 public class Trie {
 
     private TrieNode root;
@@ -48,6 +44,7 @@ public class Trie {
         root = new TrieNode(new HashMap<>(), false);
     }
 
+    // PREFIX TREE
     public void insert(String word) {
         if (!root.getChildren().containsKey(word.charAt(0))) {
             // means that the first letter isn't present
@@ -97,6 +94,66 @@ public class Trie {
                 TrieNode newNode = new TrieNode(new HashMap<>(), false);
                 // If we are at the last character , set End of word to true
                 if (i == word.length() - 1) {
+                    newNode.setEndOfTheWord(true);
+                }
+                childs.put(word.charAt(i), newNode);
+                curr = newNode;
+                childs = curr.getChildren();
+            }
+            curr.setChildren(childs);
+        }
+    }
+
+    // SUFFIX TREE
+    public void insertFromEnd(String word) {
+        if (!root.getChildren().containsKey(word.charAt(word.length() - 1))) {
+            // means that the last letter isn't present
+            // get the children instance of root node
+            TrieNode curr;
+            curr = root;
+            HashMap<Character, TrieNode> childs = curr.getChildren();
+            for (int i = word.length() - 1; i >= 0; i--) {
+                TrieNode newNode = new TrieNode(new HashMap<>(), false);
+                // If we are at the last character , set End of word to true
+                if (i == 0) {
+                    newNode.setEndOfTheWord(true);
+                }
+                childs.put(word.charAt(i), newNode);
+                curr.setChildren(childs);
+                curr = newNode;
+                childs = curr.getChildren();
+            }
+        } else {
+            // means the children isnot null and the root already has the last letter
+            // get the children instance of root node
+            TrieNode curr;
+            curr = root;
+            int index = word.length() - 1;
+            int stoppedIdx = word.length() - 1;
+            // Now we gotta keep going and set the curr node to the node which children have
+            // no any more words present
+            while (index >= 0) {
+                if (curr.getChildren().containsKey(word.charAt(index))) {
+                    curr = curr.getChildren().get(word.charAt(index));
+                    stoppedIdx = index;
+                } else {
+                    break;
+                }
+                index -= 1;
+            }
+            // Now if we already found the whole word inside another word
+            // we have to set that last one to the isEndOfTheWord = true
+            if (stoppedIdx == 0) {
+                // At last already , so set that word to atEnd=true and return;
+                curr.setEndOfTheWord(true);
+                return;
+            }
+            // else keep inserting normally
+            HashMap<Character, TrieNode> childs = curr.getChildren();
+            for (int i = stoppedIdx - 1; i >= 0; i--) {
+                TrieNode newNode = new TrieNode(new HashMap<>(), false);
+                // If we are at the last character , set End of word to true
+                if (i == 0) {
                     newNode.setEndOfTheWord(true);
                 }
                 childs.put(word.charAt(i), newNode);
