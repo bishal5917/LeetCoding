@@ -1,6 +1,4 @@
 
-package BaseballGame;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +8,12 @@ public class BaseballGame {
         List<Integer> scores = new ArrayList<>();
         int totalSum = 0;
         for (String item : operations) {
-            if (item == "C") {
+            if (item.equals("C")) {
                 scores.remove(scores.size() - 1);
-            } else if (item == "D") {
+            } else if (item.equals("D")) {
                 int prev = scores.get(scores.size() - 1);
                 scores.add(prev * 2);
-            } else if (item == "+") {
+            } else if (item.equals("+")) {
                 int last = scores.get(scores.size() - 1);
                 int secondLast = scores.get(scores.size() - 2);
                 scores.add(last + secondLast);
@@ -33,7 +31,6 @@ public class BaseballGame {
 
     public static void main(String[] args) {
         String[] ops = { "5", "-2", "4", "C", "D", "9", "+", "+" };
-        // String[] ops = { "1", "C" };
         BaseballGame obj = new BaseballGame();
         obj.calPoints(ops);
     }
