@@ -1,59 +1,55 @@
 package BinaryTree;
 
-import java.util.HashMap;
+import java.util.Arrays;
 
 public class PseudoPalindromicPathsInABinaryTree {
 
     public int pseudoPalindromicPaths(TreeNode root) {
-        return pseudoPalindromicPathCounterHelper(root, 0, "");
+        if (root == null) {
+            return 0;
+        }
+        // Numbers are from 1-9
+        // so we can count on Array instead of HASHMAP
+        int[] counts = new int[10];
+        counts[root.val] += 1;
+        return dfsHelper(root, counts, 0);
     }
 
-    private int pseudoPalindromicPathCounterHelper(TreeNode root, int count, String path) {
+    // Lets do a traversal
+    private int dfsHelper(TreeNode root, int[] counts, int count) {
         if (root == null) {
             return count;
         }
-        path += String.valueOf(root.val);
         if (root.left == null && root.right == null) {
-            if (checkIfPathIsPseudoPalindromic(path.toString())) {
+            // check if its pseudoPalindromic
+            if (isPseudoPalindromic(counts)) {
                 count += 1;
             }
-            path = "";
         }
-        count = pseudoPalindromicPathCounterHelper(root.left, count, path);
-        count = pseudoPalindromicPathCounterHelper(root.right, count, path);
+        // Now traverse recursively
+        for (TreeNode child : Arrays.asList(root.left, root.right)) {
+            if (child == null) {
+                continue;
+            }
+            counts[child.val] += 1;
+            count = dfsHelper(child, counts, count);
+            counts[child.val] -= 1;
+        }
         return count;
     }
 
-    // For the number to be pseudopalindromic, it should satisfy the condition that
-    // at most one digit occurs an odd
-    // number of times,and all other digits occur an even number of times.
-    private boolean checkIfPathIsPseudoPalindromic(String path) {
-        HashMap<Character, Integer> counts = new HashMap<>();
-        for (int i = 0; i < path.length(); i++) {
-            char currChar = path.charAt(i);
-            if (counts.get(currChar) == null) {
-                counts.put(currChar, 1);
-            } else {
-                int currentCount = counts.get(currChar);
-                counts.put(currChar, currentCount + 1);
+    private boolean isPseudoPalindromic(int[] counts) {
+        // odds cant be more than 1 to become palindromic
+        int odds = 0;
+        for (int i = 1; i <= 9; i++) {
+            if (counts[i] % 2 != 0) {
+                odds += 1;
             }
-        }
-        int evenCount = 0;
-        int oddCount = 0;
-        for (char item : counts.keySet()) {
-            if (oddCount > 1) {
+            if (odds > 1) {
                 return false;
             }
-            if (counts.get(item) % 2 == 0) {
-                evenCount += 1;
-            } else {
-                oddCount += 1;
-            }
         }
-        if (oddCount <= 1 && oddCount + evenCount == counts.size()) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public static void main(String[] args) {
