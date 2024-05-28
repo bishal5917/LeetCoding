@@ -3,42 +3,37 @@ import java.util.Arrays;
 class SudokuSolver {
 
     public void solveSudoku(char[][] board) {
-        traverseBoardAndPlaceHelper(board, 0, 0);
+        sudokuSolver(board, 0, 0);
     }
 
-    // THIS SOLUTION ONLY WORKS FOR EMPTY BOARD AND GIVES ONE SOLUTION EVERYTIME
-    private void traverseBoardAndPlaceHelper(char[][] board, int r, int c) {
+    private boolean sudokuSolver(char[][] board, int r, int c) {
         if (r == 9) {
-            // means all rows filled, just return
-            return;
+            // means solved,return true
+            return true;
         }
         if (c == 9) {
-            // move to the next row
-            traverseBoardAndPlaceHelper(board, r + 1, 0);
-            return;
+            // go for next row
+            return sudokuSolver(board, r + 1, 0);
         }
         if (board[r][c] != '.') {
-            // if the cell is already filled, move to the next column
-            traverseBoardAndPlaceHelper(board, r, c + 1);
-            return;
+            // means already filled,go for next row or column
+            return sudokuSolver(board, r, c + 1);
         }
-        // cell is empty, try placing a digit
-        for (char digit = '1'; digit <= '9'; digit++) {
-            if (isValidHere(board, r, c, digit)) {
-                // place the digit
-                board[r][c] = digit;
-                // move to the next cell
-                c = c + 1;
-                traverseBoardAndPlaceHelper(board, r, c);
-                // if a solution is found, stop further exploration
-                if (board[8][8] != '.') {
-                    return;
+        // else try all possibilities
+        for (char ch = '1'; ch <= '9'; ch++) {
+            if (isValidHere(board, r, c, ch)) {
+                // place if valid
+                board[r][c] = ch;
+                boolean isSolved = sudokuSolver(board, r, c + 1);
+                if (isSolved) {
+                    // if all solved,early exit
+                    return isSolved;
                 }
-                c = c - 1;
-                // undo the placement if it didn't lead to a solution
                 board[r][c] = '.';
             }
         }
+        // else return false
+        return false;
     }
 
     // For validating if we can add given value at that position or not
@@ -109,27 +104,16 @@ class SudokuSolver {
 
     public static void main(String[] args) {
         SudokuSolver obj = new SudokuSolver();
-        // char[][] board = {
-        // { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
-        // { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
-        // { '.', '9', '8', '.', '.', '.', '.', '6', '.' },
-        // { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
-        // { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
-        // { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
-        // { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
-        // { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
-        // { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
-        // };
         char[][] board = {
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '1' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' }
+                { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
+                { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
+                { '.', '9', '8', '.', '.', '.', '.', '6', '.' },
+                { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
+                { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
+                { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
+                { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
+                { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
+                { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
         };
         obj.solveSudoku(board);
         obj.printBoard(board);
